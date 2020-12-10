@@ -7,7 +7,10 @@
   <!-- Favicon -->
 </head>
 <body>
-  <main class="voice" contenteditable></main>
+
+  <h4>Allow microphone access and make sure it's not active on another tab.
+  <br>Start dictating!</h4>
+  <main class="words" contenteditable></main>
 
   <script>
     window.SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
@@ -17,8 +20,8 @@
     speech.lang = 'en-US';
 
     let paragraph = document.createElement('p');
-    const voice = document.querySelector('.voice');
-    voice.appendChild(paragraph);
+    const words = document.querySelector('.words');
+    words.appendChild(paragraph);
 
     speech.addEventListener('result', e => {
       const transcript = Array.from(e.results)
@@ -28,13 +31,13 @@
 
       if (e.results[0].isFinal) {
         paragraph = document.createElement('p');
-        voice.appendChild(paragraph);
+        words.appendChild(paragraph);
       }
     });
 
-    voice.addEventListener('end', voice.start);
-
-    voice.start();
+    speech.addEventListener('end', speech.start);
+    
+    speech.start();
   </script>
 
   <style>
@@ -47,6 +50,12 @@
       font-family: 'helvetica neue';
       font-weight: 200;
       font-size: 20px;
+    }
+
+    h4 {
+      font-family:'Courier New', monospace;
+      font-weight: 400;
+      text-align: center;
     }
 
     .words {
