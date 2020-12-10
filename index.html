@@ -29,6 +29,8 @@
         .map(result => result.transcript)
         .join('');
 
+      paragraph.textContent = transcript;
+
       if (e.results[0].isFinal) {
         paragraph = document.createElement('p');
         words.appendChild(paragraph);
@@ -36,7 +38,7 @@
     });
 
     speech.addEventListener('end', speech.start);
-    
+
     speech.start();
   </script>
 
